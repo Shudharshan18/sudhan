@@ -27,9 +27,15 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
+def Reverse(lst):
+   new_lst = lst[::-1]
+   return new_lst
+
 @login_required(login_url='/')
 def home(request):
     mov = movie.objects.all()
+    mov = Reverse(mov)
+    # print(mov)
     return render(request,'home.html',{'movies':mov})
 
 @login_required(login_url='/')
